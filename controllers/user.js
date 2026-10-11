@@ -1,11 +1,9 @@
 const User = require("../models/user.js");
 
-// Render Signup Form
 module.exports.renderSignupForm = (req, res) => {
     res.render("users/signup.ejs");
 };
 
-// Handle Signup Logic
 module.exports.signup = async (req, res, next) => {
     try {
         const { username, email, password } = req.body;
@@ -25,19 +23,16 @@ module.exports.signup = async (req, res, next) => {
     }
 };
 
-// Render Login Form
 module.exports.renderLoginForm = (req, res) => {
     res.render("users/login.ejs");
 };
 
-// Handle Login Logic
 module.exports.login = (req, res) => {
     req.flash("success", "Welcome back!");
     const redirectUrl = res.locals.redirectUrl || "/listings";
     res.redirect(redirectUrl);
 };
 
-// Handle Logout Logic
 module.exports.logout = (req, res, next) => {
     req.logout((err) => {
         if (err) {
